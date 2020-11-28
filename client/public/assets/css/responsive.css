@@ -1,0 +1,101 @@
+
+/*  Small mobile :320px. */
+
+@media (min-width: 480px) and (max-width: 767px) {
+	.menu-page-area .menu-page-wrap .menu-page-content ul li a{
+		padding: 10px 40px;
+	}
+}
+
+@media all and (max-width: 370px) {
+	.book-appoinment-page .book-appoinment-wrap .slots-area .slot-box .time-list label{
+		padding: 9px 12px;
+	}
+	.call-page-area .call-lage-wrap .caller-bg-img .main-img {
+	    width: 100%;
+	}
+	.single-message-page .single-message-wrap .single-message-list .send-message .message-text-wrap .message-text{
+		padding:20px;
+	}
+	.single-message-page .single-message-wrap .single-message-list .send-message .message-text-wrap {
+	    width: 235px;
+	}
+	.single-message-page .single-message-wrap .single-message-list .recive-message .message-text-wrap .message-text{
+		padding:20px;
+	}
+	.single-message-page .single-message-wrap .single-message-list .recive-message .message-text-wrap{
+		width: 235px;
+	}
+	.single-message-page .single-message-wrap .single-message-list .recive-message .message-text-wrap .message-text p {
+		font-size: 10px;
+	}
+	.single-message-page .single-message-wrap .single-message-list .send-message .message-text-wrap .message-text p{
+		font-size: 10px;
+	}
+	.single-message-page .single-message-wrap .single-message-list .send-message .user-image{
+		width: 35px;
+	    height: 35px;
+	    position: relative;
+    	bottom: 15px;
+	}
+	.single-message-page .single-message-wrap .single-message-list .recive-message .user-image {
+	    width: 35px;
+	    height: 35px;
+	    position: relative;
+    	bottom: 15px;
+	}
+	.single-message-page .single-message-wrap .single-message-list .send-message{
+		align-items: flex-end;
+	}
+	.single-message-page .single-message-wrap .single-message-list .recive-message {
+	    align-items: flex-end;
+	}
+	.cardiologist-list-area .all-cardiologist-list .single-cardiologist {
+	    padding: 10px 10px 15px 10px;
+	}
+	.cardiologist-list-area .all-cardiologist-list .single-cardiologist .cardiologist-info .cardiologist-meta li{
+		margin-right: 5px;
+	}
+	.cardiologist-list-area .all-cardiologist-list .single-cardiologist .cardiologist-info {
+	    padding-left: 0;
+	}
+	.all-doctor-page .tabs-menu .nav-pills .nav-item .nav-link{
+		font-size: 11px;
+		letter-spacing: 0px;
+	}
+	
+	.search-list-area .all-search-list .single-cardiologist {
+		padding: 10px 10px 15px 10px;
+	}
+	.search-list-area .all-search-list .single-cardiologist .search-list-wrap .doctor-img {
+		margin-right: 10px;
+	}
+	.search-list-area .all-search-list .single-cardiologist .search-list-wrap .doctor-img img{
+		width:35px;
+	}
+	.search-list-area .all-search-list .single-cardiologist .cardiologist-info .cardiologist-meta li{
+		margin-right: 5px;
+	}
+	.myapptointment-page .myapptointment-page-wrap .myapptointment-content .myapptointment-list .singl-apptointment .apptointment-box .single-box span{
+		font-size:10px;
+	}
+	.myapptointment-page .myapptointment-page-wrap .myapptointment-content .myapptointment-list .singl-apptointment .apptointment-box .single-box h5 {
+		font-size:10px;
+	}
+	.header-area .header-bottom .serch-header .profile-eidt-area .profile-edit-btn i:before {
+		font-size:14px;
+	}
+	.header-area .header-bottom .serch-header .profile-eidt-area .profile-edit-btn {
+		font-size: 13px;
+	}
+	.menu-area ul li a.active {
+		padding: 10px 15px;
+	}
+	.all-doctor-page .tab-info-wrap .all-doctors-list .single-doctor{
+		width:48%;
+		margin: 1%;
+	}
+	.search-list-area .all-search-list .single-cardiologist .cardiologist-info .doctor-info p {
+	    line-height: 12px;
+	}
+}
