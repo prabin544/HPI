@@ -21,6 +21,7 @@ const patientRecordSchema = new Schema({
   qualityType: [String],
   radiation: [String],
   severity: Number,
+  hpi: String,
   diagnosis: [String],
   status: {
     type: String,

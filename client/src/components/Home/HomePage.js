@@ -1,14 +1,21 @@
-import React, { useState } from "react";
-import { Button, Container, Row, Col, Nav, Tab, Sonnet } from "react-bootstrap";
+import React, { useState, useContext } from "react";
+import { Button, Container, Row, Col, Nav, Tab } from "react-bootstrap";
 import PainLevel from '../PainLevel/PainLevel';
 import Duration from '../Duration/DurationPage';
-import HPI from '../HPI/HPIPage';
 import "./HomePage.css"
 import HPIPage from "../HPI/HPIPage";
-import { InputProvider } from '../InputContext'
+import InputContext from '../../Context/InputContext'
+import { useHistory } from 'react-router-dom';
 
 
 const Home = (props) => {
+  const history = useHistory();
+  const handleSubmit = event => {
+    history.push({
+        pathname: '/hpi',
+        values: newUserInput
+    });
+  };
   const symptoms = [
     "Head",
     "Eyes",
@@ -47,6 +54,9 @@ const Home = (props) => {
       "Aching",
       "Stabbing"
   ]
+    const PainLevel = [
+      "0","1","2","3","4","5","6","7","8","9","10"
+  ]
     const Radiations = [
       "Head",
       'Neck',
@@ -64,7 +74,8 @@ const Home = (props) => {
       'Calf',
       'Ankle',
       'Foot',
-      'Toes'
+      'Toes',
+      'N/A'
   ]
     const AssSymps = [
       '*Fatigue',
@@ -136,50 +147,79 @@ const Home = (props) => {
       'Gradual',
       'Acute Onset'
   ]
+  
     
     const [symptomInput, setSymptomInput] = useState();
-    const [qualityInput, setQualityInput] = useState();
+    const [durationInput, setDurationInput] = useState();
+    const [durationDivInput, setdurationDivInput] = useState(false);
+    const [qualityInput, setQualityInput] = useState("quality");
+    const [qualityDivInput, setqualityDivInput] = useState(false);
     const [radiationInput, setRadiationInput] = useState();
+    const [painInput, setPainInput] = useState();
     const [assSympInput, setAssSympInput] = useState();
     const [pallativeInput, setPallativeInput] = useState();
     const [provocativeInput, setProvocativeInput] = useState();
     const [qunatityInput, setqunatityInput] = useState();
 
+    
     function handleInput(e) {
-      setSymptomInput({
-        [e.target.name]: e.target.innerText
-      });
-      setQualityInput({
-        [e.target.name]: e.target.innerText
-      });
-      setRadiationInput({
-        [e.target.name]: e.target.innerText
-      });
-      setAssSympInput({
-        [e.target.name]: e.target.innerText
-      });
-      setPallativeInput({
-        [e.target.name]: e.target.innerText
-      });
-      setProvocativeInput({
-        [e.target.name]: e.target.innerText
-      });
-      setqunatityInput({
-        [e.target.name]: e.target.innerText
-      });
+      //CREATE CONDITION ON THE CLICK LISTENER TO PROPERLY SET THE STATE
+      
+      //setqualityDivInput(qualityDivInput => ({ qualityDivInput: !qualityDivInput }));
+      if(e.target.name==="symptoms"){
+        setdurationDivInput(durationDivInput => ({ durationDivInput: !durationDivInput }));
+        setSymptomInput( e.target.innerText)
+      }
+      if(e.target.name==="Qualities"){
+        setQualityInput( e.target.innerText)
+      }
+      if(e.target.name==="PainLevel"){
+        setPainInput( e.target.innerText)
+      }
+      if(e.target.name==="Radiations"){
+        setRadiationInput( e.target.innerText)
+      }
+      if(e.target.name==="AssSymps"){
+        setAssSympInput( e.target.innerText)
+      }
+      if(e.target.name==="Pallatives"){
+        setPallativeInput( e.target.innerText)
+      }
+      if(e.target.name==="Provocatives"){
+        setProvocativeInput( e.target.innerText)
+      }
+      if(e.target.name==="Quantities"){
+        setqunatityInput( e.target.innerText)
+      }
     }
+    
     const inputs = [
       {symptoms: symptomInput},
+      {Duration: durationInput},
       {Qualities:qualityInput},
+      {PainLevel:painInput},
       {Radiations:radiationInput},
       {AssSymps:assSympInput},
       {Pallatives:pallativeInput},
       {Provocatives:provocativeInput},
       {Quantities: qunatityInput}
     ]
+
+    let newUserInput, userInputCon;
+    newUserInput = useContext(InputContext)
+    userInputCon = inputs;
+    newUserInput=userInputCon;
+
+    
+
+    
+    
   return (
     <>
-    <InputProvider value={inputs}>
+    {/* <InputProvider value={inputs}> */}
+    {console.log("SYMP", symptomInput)}
+    {console.log("INPUTS", inputs)}
+    {console.log("context works!", newUserInput)}
       <Container>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
@@ -191,8 +231,8 @@ const Home = (props) => {
                 <Nav.Item>
                   <Nav.Link eventKey="second">Duration</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="third">Quality</Nav.Link>
+                <Nav.Item >
+                  <Nav.Link eventKey="third" >Quality</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="fourth">Severity</Nav.Link>
@@ -219,28 +259,36 @@ const Home = (props) => {
                 <Tab.Pane eventKey="first">
                   <h3>What is your main symptom today? (Pick one)</h3>
                   {symptoms.map((symptom) =>(
-                    <Button  color="success" className="Btn" onClick={(e)=>handleInput(e)} name="symptoms">{symptom}</Button>
+                    <Button  color="success" className="Btn" onClick={(e)=>{handleInput(e);  }} name="symptoms">{symptom}</Button>
                   ))}
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
-                  <h3>How long have you been experiencing symptoms?</h3>
-                    <Duration />
+                    <a>Please answer previous question</a>
+                    <div className={durationDivInput ? "" : "hidden"}>
+                      <h3>How long have you been experiencing symptoms?</h3>
+                        <Duration onChangeHandler={setDurationInput}/>
+                    </div>
                 </Tab.Pane>
-                <Tab.Pane eventKey="third">
-                  <h3>What is the quality of the symptom(s) you are experiencing?</h3>
-                    {Qualities.map((Quality) =>(
-                      <Button  color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Qualities">{Quality}</Button>
-                    ))}
+                <Tab.Pane eventKey="third" >
+                    <div className={qualityDivInput ? "" : "hidden"}>
+                      <h3>What is the quality of the symptom(s) you are experiencing?</h3>
+                        {Qualities.map((Quality) =>(
+                          <Button color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Qualities">{Quality}</Button>
+                        ))}
+                    </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="fourth">
                   <h3>Please describe your pain level.</h3>
-                    <img src="https://www.prohealth.com/wp-content/uploads/2015/04/pain-scale-859x305.jpg"></img>
-                    <PainLevel/>
+                    <img src="https://www.prohealth.com/wp-content/uploads/2015/04/pain-scale-859x305.jpg" alt="pain"></img>
+                    {/* <PainLevel /> */}
+                    {PainLevel.map((pain) =>(
+                      <Button  color="success" className="Btn painBtn" onClick={(e)=>handleInput(e)} name="PainLevel">{pain}</Button>
+                    ))}
                 </Tab.Pane>
                 <Tab.Pane eventKey="fifth">
                   <h3>Where are the symptoms radiating from?</h3>
                     {Radiations.map((Radiation) =>(
-                      <Button  color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Radiations">{Radiation}</Button>
+                      <Button  multiple color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Radiations">{Radiation}</Button>
                     ))}
                 </Tab.Pane>
                 <Tab.Pane eventKey="sixth">
@@ -263,23 +311,21 @@ const Home = (props) => {
                 </Tab.Pane>
                 <Tab.Pane eventKey="ninth">
                   <h3>How often do you experience symptoms?</h3>
-                    {Quantities.map((Qunatity) =>(
-                      <Button  color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Qunatities">{Qunatity}</Button>
+                    {Quantities.map((Quantity) =>(
+                      <Button  color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Quantities">{Quantity}</Button>
                     ))}
                 </Tab.Pane>
                 <Tab.Pane eventKey="tenth">
-                  <HPI />
+                  <HPIPage />
                 </Tab.Pane>
               </Tab.Content>
             </Col>
-            <Row>
-              <Button className="submitBtn" >Submit</Button>
-            </Row>
           </Row>
         </Tab.Container>
-        
       </Container>
-    </InputProvider>
+      <Row className="submitBtn">
+        <Button onClick={(e)=>handleSubmit(e)}>Submit</Button>
+      </Row>
     </>
   );
 };

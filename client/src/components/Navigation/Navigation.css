@@ -1,0 +1,19 @@
+.logoName{
+    font-family: fantasy;
+    font-size: xx-large;
+}
+.form-inline{
+    color: white;
+}
+
+.navbar{
+    background-color: transparent!important;
+    border-top: 1px solid teal;
+    border-bottom: 1px solid teal;
+}
+.navlink a{
+    color: white!important;
+}
+.navbar a:hover{
+    color:white!important;
+}

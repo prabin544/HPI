@@ -12,6 +12,12 @@ h3{
   padding-top: 50px;
 }
 .submitBtn{
-  padding-left: 500px;
-  position: relative;
+  justify-content: center;
+  padding-top: 40px;
+}
+.painBtn{
+  justify-content: center;
+}
+.hidden{
+  display: none;
 }

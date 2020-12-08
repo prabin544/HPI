@@ -677,7 +677,7 @@ ul {
     -o-border-radius: 4px;
     border-radius: 4px;
     resize: none;
-    font-size: 18px;
+    font-size: 16px;
     color: #65667D;
     line-height: 32px;
     background: transparent;
@@ -822,6 +822,13 @@ ul {
 /*=================================================
 9.see-area
 ===================================================*/
+
+.card-rounded{
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(180, 198, 235, 0.3)
+
+}
+
 .see-area {
   margin-bottom: 5px; }
   .see-area .see-left h4 {

@@ -24,9 +24,11 @@
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
     "env": "0.0.2",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.15",
     "path": "^0.12.7",
     "postcss": "^8.1.8",
@@ -34,7 +36,9 @@
     "react-bootstrap": "^1.4.0",
     "react-datepicker": "^3.3.0",
     "react-dom": "^17.0.1",
+    "react-rainbow-components": "^1.21.0",
     "react-router-dom": "^5.2.0",
+    "simple-react-calendar": "^2.2.8",
     "tailwindcss": "^2.0.1"
   }
 }
