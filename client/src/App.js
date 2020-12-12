@@ -8,9 +8,15 @@ import FeedPage from './components/Feed';
 import HpiCard from './components/HPI/HPICard';
 import UserContext from './Context/UserContext'
 // import history from './components/history';
-
 import Register from './components/Register/Register';
-import Login from "./components/Login/LoginPage"
+import Login from "./components/Login/LoginPage";
+import AboutPage from "./components/About/About"
+import LogOptions from "./components/LogOptions/LogOptions";
+import Time from "./components/CurrTime/CurrTimePage";
+
+// Import Fontawesome Library Component
+import "./components/FontawesomeIcons";
+
 
 function App() {
   const [userData, setUserData] = useState({
@@ -54,6 +60,8 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/home" component={Home} />
           <Route path="/hpi" component={HpiCard} />
+          <Route path="/feed" component={FeedPage} />
+          <Route path="/about" component={AboutPage} />
           {/* <Route exact path="/user" component={Login}/> */}
         </Switch>
         {/* <Navigation /> */}

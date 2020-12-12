@@ -10,6 +10,8 @@ mongoose.connect(
 
 const patientRecordSeed = [
   {
+    patientName: "Amy K",
+    dob: "2020-11-18",
     apptDate: new Date(Date.now()),
     patientId: "001",
     symptom: "Trauma",
@@ -20,8 +22,11 @@ const patientRecordSeed = [
     radiation: ["lower back", "legs"],
     severity: 7,
     symptomStart: new Date(Date.now()),
+    hpi: "Patient reports back pain after coding bootcamp"
   },
   {
+    patientName: "Marlon P",
+    dob: "2020-11-18",
     apptDate: new Date(Date.now()),
     patientId: "002",
     symptom: "Flu/COVID symptoms",
@@ -32,8 +37,11 @@ const patientRecordSeed = [
     radiation: ["chest"],
     severity: 7,
     symptomStart: new Date(Date.now()),
+    hpi: "Patient reports back pain after coding bootcamp"
   },
   {
+    patientName: "Robin R",
+    dob: "2020-11-18",
     apptDate: new Date(Date.now()),
     patientId: "003",
     symptom: "abdomen",
@@ -44,8 +52,11 @@ const patientRecordSeed = [
     radiation: ["right upper abdomen"],
     severity: 7,
     symptomStart: new Date(Date.now()),
+    hpi: "Amy Nguyen is a 44-year old Female who reports pain for 0 days. Patient describes their symptom as quality. Patient has radiation to their . Patient rates their pain as a /10. The patient's symptom is . The patient's symptom is worse with and better with . The patient admits to . The patient denies associated symptoms** fever, chills, or fatigue."
   },
   {
+    patientName: "Prabin",
+    dob: "2020-11-18",
     apptDate: new Date(Date.now()),
     patientId: "003",
     symptom: "fracture",
@@ -56,36 +67,37 @@ const patientRecordSeed = [
     radiation: ["right upper abdomen"],
     severity: 7,
     symptomStart: new Date(Date.now()),
+    hpi: "Patient reports back pain after coding bootcamp"
   }
 ];
 
 const userSeed = [
   {
     email: "admin@email.com",
-    firsName: "Admin",
+    firstName: "Admin",
     lastName: "User",
     gender: "Hermaphrodite",
     userType: "admin",
     dob: "2020-11-18",
-    password: "1234"
+    password: "$2b$10$3fi4525qV1oTpCTuh7lX.ucASZ5yl6vysezZCHDmdVIneTuZ9.ssu"
   },
   {
     email: "patient1@email.com",
-    firsName: "John",
+    firstName: "John",
     lastName: "Doe",
     gender: "Male",
     userType: "patient",
     dob: "1980-01-31",
-    password: "1234"
+    password: "$2b$10$3fi4525qV1oTpCTuh7lX.ucASZ5yl6vysezZCHDmdVIneTuZ9.ssu"
   },
   {
     email: "doctor1@email.com",
-    firsName: "Amy",
+    firstName: "Amy",
     lastName: "Nguyen",
     gender: "Female",
     dob: "1990-12-25",
     userType: "physician",
-    password: "1234"
+    password: "$2b$10$3fi4525qV1oTpCTuh7lX.ucASZ5yl6vysezZCHDmdVIneTuZ9.ssu"
   }
 ];
 

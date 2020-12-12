@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Container, Row, Col, Nav, Tab } from "react-bootstrap";
 import PainLevel from '../PainLevel/PainLevel';
 import Duration from '../Duration/DurationPage';
@@ -6,10 +6,19 @@ import "./HomePage.css"
 import HPIPage from "../HPI/HPIPage";
 import InputContext from '../../Context/InputContext'
 import { useHistory } from 'react-router-dom';
+import UserContext from '../../Context/UserContext';
+import { set } from "mongoose";
 
 
 const Home = (props) => {
   const history = useHistory();
+  const {userData} = useContext(UserContext);
+  
+  //redirects user to login page if not logged in
+  useEffect(()=> {
+    if(!userData.user) history.push("/login")
+  })
+
   const handleSubmit = event => {
     history.push({
         pathname: '/hpi',
@@ -17,24 +26,36 @@ const Home = (props) => {
     });
   };
   const symptoms = [
-    "Head",
-    "Eyes",
-    "Ears",
-    "Nose",
-    "COVID",
-    "Neck",
-    "Back",
-    "Arms",
-    "Wrist",
-    "Hand",
-    "Legs",
-    "Ankle",
-    "Foot",
-    "Chest",
-    "Cough",
-    "Shortness of Breath",
-    "Abdomen",
-    "Urinary"
+    "abdominal pain",
+    "arm pain",
+    "ankle pain",
+    "back pain",
+    "chest pain",
+    "confusion",
+    "congestions",
+    "cough",
+    "COVID symptoms",
+    "COVID exposure",
+    "diarrhea",
+    "eye pain",
+    "eye discharge",
+    "eye swelling",
+    "ear pain",
+    "ear discharge",
+    "ear swelling",
+    "finger pain",
+    "flu-like symptoms",
+    "foot pain",
+    "hand pain",
+    "headache",
+    "leg pain",
+    "neck pain",
+    "nausea",
+    "runny nose",
+    "shortness of breath",
+    "urinary",
+    "vomiting",
+    "wrist pain",
   ]
   const Durations = [
     "Today",
@@ -106,10 +127,11 @@ const Home = (props) => {
       'Eye Discharge',
       'Urinary Frequency',
       'Urinary Urgency',
-      'Painful Urination'
+      'Painful Urination',
+      'N/A'
   ]
     const Pallatives = [
-        "Rest", "Ice", "Heat", "Bandage", "Elevation", "Ibuprofen", "Tylenol", "Over-the-Counter Medications", "Inhaler", "Nebulizer Treatments", "Prescribed Medications", "Anti-Nausea Medication", "Anti-Dizziness Medication", "Cough Medication", "Antibiotics", "Ear Drops", "Splinting", "Standing", "Sitting", "Walking"
+        "Rest", "Ice", "Heat", "Bandage", "Elevation", "Ibuprofen", "Tylenol", "Over-the-Counter Medications", "Inhaler", "Nebulizer Treatments", "Prescribed Medications", "Anti-Nausea Medication", "Anti-Dizziness Medication", "Cough Medication", "Antibiotics", "Ear Drops", "Splinting", "Standing", "Sitting", "Walking", "N/A"
   ]
     const Provocatives = [
       'movement',
@@ -139,35 +161,38 @@ const Home = (props) => {
       'Mopping',
       'Mowing the Grass',
       'Walking Long Distances',
-      'Sitting for Long Periods of Time'
+      'Sitting for Long Periods of Time',
+      'N/A'
   ]
     const Quantities = [
       'Intermittent',
       'Constant',
       'Gradual',
-      'Acute Onset'
+      'Acute Onset',
+      'N/A'
   ]
   
     
     const [symptomInput, setSymptomInput] = useState();
     const [durationInput, setDurationInput] = useState();
-    const [durationDivInput, setdurationDivInput] = useState(false);
     const [qualityInput, setQualityInput] = useState("quality");
-    const [qualityDivInput, setqualityDivInput] = useState(false);
-    const [radiationInput, setRadiationInput] = useState();
+    const [radiationInput, setRadiationInput] = useState([]);
     const [painInput, setPainInput] = useState();
-    const [assSympInput, setAssSympInput] = useState();
-    const [pallativeInput, setPallativeInput] = useState();
-    const [provocativeInput, setProvocativeInput] = useState();
-    const [qunatityInput, setqunatityInput] = useState();
+    const [assSympInput, setAssSympInput] = useState([]);
+    const [pallativeInput, setPallativeInput] = useState([]);
+    const [provocativeInput, setProvocativeInput] = useState([]);
+    const [qunatityInput, setqunatityInput] = useState([]);
+    const [qunatityDivInput, setqunatityDivInput] = useState(false);
+    const [tabRequest, setEnabled] = useState(true)
+    console.log('TAB', tabRequest)
 
-    
+  
+
     function handleInput(e) {
       //CREATE CONDITION ON THE CLICK LISTENER TO PROPERLY SET THE STATE
       
       //setqualityDivInput(qualityDivInput => ({ qualityDivInput: !qualityDivInput }));
       if(e.target.name==="symptoms"){
-        setdurationDivInput(durationDivInput => ({ durationDivInput: !durationDivInput }));
         setSymptomInput( e.target.innerText)
       }
       if(e.target.name==="Qualities"){
@@ -177,19 +202,41 @@ const Home = (props) => {
         setPainInput( e.target.innerText)
       }
       if(e.target.name==="Radiations"){
-        setRadiationInput( e.target.innerText)
+        const radiationSymptom = e.target.innerText;
+        if(!radiationInput.includes(radiationSymptom)) {
+          setRadiationInput([...radiationInput, radiationSymptom]);
+        }
       }
       if(e.target.name==="AssSymps"){
-        setAssSympInput( e.target.innerText)
+        //setAssSympInput( e.target.innerText)
+        const assSymptom = e.target.innerText;
+        if(!assSympInput.includes(assSymptom)) {
+          setAssSympInput([...assSympInput, assSymptom]);
+        }
       }
       if(e.target.name==="Pallatives"){
-        setPallativeInput( e.target.innerText)
+        //setPallativeInput( e.target.innerText)
+        const pallativesSymptom = e.target.innerText;
+        if(!pallativeInput.includes(pallativesSymptom)) {
+          setPallativeInput([...pallativeInput, pallativesSymptom]);
+        }
       }
       if(e.target.name==="Provocatives"){
-        setProvocativeInput( e.target.innerText)
+        //setProvocativeInput( e.target.innerText)
+        const provocativesSymptom = e.target.innerText;
+        if(!provocativeInput.includes(provocativesSymptom)) {
+          setProvocativeInput([...provocativeInput, provocativesSymptom]);
+        }
+        
       }
       if(e.target.name==="Quantities"){
-        setqunatityInput( e.target.innerText)
+        setqunatityDivInput(qunatityDivInput => ({ qunatityDivInput: !qunatityDivInput }));
+        //setqunatityInput( e.target.innerText)
+        const quantitiesSymptom = e.target.innerText;
+        if(!qunatityInput.includes(quantitiesSymptom)) {
+          setqunatityInput([...qunatityInput, quantitiesSymptom]);
+        }
+        
       }
     }
     
@@ -210,26 +257,24 @@ const Home = (props) => {
     userInputCon = inputs;
     newUserInput=userInputCon;
 
-    
-
-    
-    
+  //  console.log( inputs[0], 'SYMP')
+  //  let sympArr = []
+  //  sympArr.push(symptomInput)
+   if(symptoms !== ""){
+     setEnabled(false)
+   }
+  
   return (
-    <>
-    {/* <InputProvider value={inputs}> */}
-    {console.log("SYMP", symptomInput)}
-    {console.log("INPUTS", inputs)}
-    {console.log("context works!", newUserInput)}
-      <Container>
+      <Container className="container">
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Row>
             <Col sm={3}>
               <Nav variant="pills" className="flex-column">
                 <Nav.Item className="tabs">
-                  <Nav.Link eventKey="first">Symptom</Nav.Link>
+                  <Nav.Link eventKey="first" id="symptom" >Symptom</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="second">Duration</Nav.Link>
+                  <Nav.Link eventKey="second" disabled={tabRequest}>Duration</Nav.Link>
                 </Nav.Item>
                 <Nav.Item >
                   <Nav.Link eventKey="third" >Quality</Nav.Link>
@@ -263,14 +308,14 @@ const Home = (props) => {
                   ))}
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
-                    <a>Please answer previous question</a>
-                    <div className={durationDivInput ? "" : "hidden"}>
+                    <div>
                       <h3>How long have you been experiencing symptoms?</h3>
                         <Duration onChangeHandler={setDurationInput}/>
                     </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="third" >
-                    <div className={qualityDivInput ? "" : "hidden"}>
+                    {/* <div className={qualityDivInput ? "" : "hidden"}> */}
+                    <div>
                       <h3>What is the quality of the symptom(s) you are experiencing?</h3>
                         {Qualities.map((Quality) =>(
                           <Button color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Qualities">{Quality}</Button>
@@ -288,7 +333,7 @@ const Home = (props) => {
                 <Tab.Pane eventKey="fifth">
                   <h3>Where are the symptoms radiating from?</h3>
                     {Radiations.map((Radiation) =>(
-                      <Button  multiple color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Radiations">{Radiation}</Button>
+                      <Button color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Radiations">{Radiation}</Button>
                     ))}
                 </Tab.Pane>
                 <Tab.Pane eventKey="sixth">
@@ -310,10 +355,12 @@ const Home = (props) => {
                     ))}
                 </Tab.Pane>
                 <Tab.Pane eventKey="ninth">
-                  <h3>How often do you experience symptoms?</h3>
-                    {Quantities.map((Quantity) =>(
-                      <Button  color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Quantities">{Quantity}</Button>
-                    ))}
+                    <div >
+                      <h3>How often do you experience symptoms?</h3>
+                        {Quantities.map((Quantity) =>(
+                          <Button  color="success" className="Btn" onClick={(e)=>handleInput(e)} name="Quantities">{Quantity}</Button>
+                        ))}
+                    </div>
                 </Tab.Pane>
                 <Tab.Pane eventKey="tenth">
                   <HPIPage />
@@ -322,11 +369,15 @@ const Home = (props) => {
             </Col>
           </Row>
         </Tab.Container>
-      </Container>
-      <Row className="submitBtn">
-        <Button onClick={(e)=>handleSubmit(e)}>Submit</Button>
+        <Row >
+          <Col md={{ span: 6, offset: 6 }}>
+            <div className={qunatityDivInput ? "" : "hidden"} style={{paddingTop:"20px"}} >
+              <Button onClick={(e)=>handleSubmit(e)}>Preview</Button>
+            </div>
+          </Col>
+        
       </Row>
-    </>
+      </Container>
   );
 };
 

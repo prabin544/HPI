@@ -5,18 +5,8 @@
  }
 h3{
   margin: auto;
-  padding-top: 50px;
+  padding-top: 10px;
   font-family: sans-serif;
-}
-.tabs{
-  padding-top: 50px;
-}
-.submitBtn{
-  justify-content: center;
-  padding-top: 40px;
-}
-.painBtn{
-  justify-content: center;
 }
 .hidden{
   display: none;

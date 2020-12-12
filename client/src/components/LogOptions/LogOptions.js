@@ -1,6 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import {Button, Container} from "react-bootstrap";
+
 import UserContext from '../../Context/UserContext';
+import './LogOptions.css'
+
 
 export default function LogOptions() {
     const { userData, setUserData } = useContext(UserContext);
@@ -23,19 +27,21 @@ export default function LogOptions() {
           user: undefined
         });
         localStorage.setItem("auth-token", "");
+        history.push('/login')
       };
-      console.log('USER DATA', userData)
+      console.log('USER DATA:', userData)
       return (
         
-        <div className="auth-options">
+        <Container className="mb-5 navButtons">
           {userData.user ? (
-            <button onClick={logout}>Log out</button>
+            <Button className="btn-blue" onClick={logout}>Log out</Button>
           ) : (
-            <>
-              <button onClick={register}>Register</button>
-              <button onClick={login}>Log in</button>
-            </>
+            
+            <Container className='navbuttons mb-5'>
+              <Button className="btn-blue" onClick={register}>Register</Button>
+              <Button className="btn-blue" onClick={login}>Log in</Button>
+            </Container>
           )}
-        </div>
+        </Container>
       );
 }

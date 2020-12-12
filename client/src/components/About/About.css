@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+  }
+
+
+.backimage {
+    background-image: url('./BlueBg.png');
+    padding:40px;
+}
+
+.companyImage {
+    background-image: url('./search-bg.png');
+    height:160px;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit:cover;
+    margin-bottom: 45px;
+}
+
+.leftFloat {
+    float: left;
+    padding-right: 10px;
+}
+
+.rightFloat {
+    float: right;
+}
+
+.companyName {
+    text-align: center;
+    letter-spacing: 18px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.companyRow {
+    padding-bottom: 10px;
+}
+
+.teamRow {
+    padding-top: 10px;
+}
+
+.teamCard {
+    border-style: solid;
+    border-color:#0d47a1;
+}
+
+.SMUCard {
+    border-style: solid;
+    border-color:#4fc3f7;
+}
+
+.descriptionHeader {
+    align-content: left;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}

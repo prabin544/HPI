@@ -7,6 +7,7 @@ const FeedPage = () => {
         <Container className="my-4">
             <Row>
               <Col sm={12}>
+                  
                   <HPIFeedCell/>
               </Col>
             </Row>

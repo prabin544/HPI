@@ -1,19 +1,64 @@
-.logoName{
-    font-family: fantasy;
-    font-size: xx-large;
+html {
+    scroll-behavior: smooth;
 }
-.form-inline{
-    color: white;
+body
+{
+    padding: 10px;
+    margin-top: none;
+    background-color: white;
+    color: #6B7378;
 }
-
+.gray{
+    color: #6B7378!important;
+    align-content:center!important;
+}
 .navbar{
     background-color: transparent!important;
-    border-top: 1px solid teal;
-    border-bottom: 1px solid teal;
+    border-top: 1px solid #6B7378;
+    border-bottom: 1px solid #6B7378;
+    align-content: center!important;
 }
-.navlink a{
-    color: white!important;
+.navbar-collapse{
+    flex-basis: none!important;
+    align-content: center;
+    width: 500px!important;
+    display: inline!important;
+    width: 500px!important;
+}
+.navbar a{
+    color: #6B7378!important;
+    padding:10px
+
 }
 .navbar a:hover{
-    color:white!important;
+    color:#6B7378!important;
+    align-content: center;
+    padding: 10px;
+}
+
+.author{
+    text-align: right;
+}
+footer{
+    text-align: center;
+}
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    color:#6B7378!important;
+    background-size: 100% 100%;
+}
+
+.btn-blue{
+    background-color: #5F95D0!important;
+    color:#6B7378!important;
+    border: none !important;
+    border-radius: 0!important;
+
+    
 }

@@ -16,6 +16,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    const { symptom, symptomStart } = req.body;
+
+    if (!symptom || !symptomStart)
+      return res
+        .status(400)
+        .json({ msg: "Missing required fields" });
+
     db.PatientRecord
       .create(req.body)
       .then(dbModel => res.json(dbModel))

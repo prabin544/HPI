@@ -1,9 +1,10 @@
+
 body{
     align-items: center;
     /* background-image: url('./BlueBg.png'); */
     background-size: flex, center;
     background-repeat: no-repeat;
-    padding:80px;
+   
 }
 .parent {
     display: flex;
@@ -15,13 +16,14 @@ body{
     display: inline-block;
   }
 
-  .Card, .card{
-      align-self: center;
-      margin: auto;
-      padding: 20px;
 
-  }
 
-  .Button{
-      padding:50px;
-  }
+  .btn-blue{
+    background-color: #5F95D0!important;
+    color:white!important;
+    border: none !important;
+    border-radius: 0!important;
+    padding: 5px
+
+    
+}

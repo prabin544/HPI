@@ -20,6 +20,9 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
     "autoprefixer": "^10.0.2",
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
@@ -36,9 +39,7 @@
     "react-bootstrap": "^1.4.0",
     "react-datepicker": "^3.3.0",
     "react-dom": "^17.0.1",
-    "react-rainbow-components": "^1.21.0",
     "react-router-dom": "^5.2.0",
-    "simple-react-calendar": "^2.2.8",
     "tailwindcss": "^2.0.1"
   }
 }

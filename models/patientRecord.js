@@ -16,12 +16,14 @@ const patientRecordSchema = new Schema({
   },
   symptomStart: Date,
   assocSymptoms: [String],
-  palliative: [String],
+  palliative: [String], 
   provocative: [String],
   qualityType: [String],
   radiation: [String],
   severity: Number,
   hpi: String,
+  dob: Date,
+  patientName: String,
   diagnosis: [String],
   status: {
     type: String,
@@ -30,6 +32,5 @@ const patientRecordSchema = new Schema({
   }
 });
 
-const PatientRecord = mongoose.model("Patient Record", patientRecordSchema);
+module.exports = mongoose.model("PatientRecord", patientRecordSchema);
 
-module.exports = PatientRecord;

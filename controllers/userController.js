@@ -100,7 +100,6 @@ module.exports = {
         .json({ msg: "Incorrect password" });
     }
 
-
     const token = jwt.sign({ user: user._id }, process.env.JWT_SECRET);
     //  console.log(token);
     res.json({

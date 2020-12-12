@@ -1,34 +1,26 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { UncontrolledAlert } from 'reactstrap';
 import "./style.css";
+import API from "../../utils/API";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const HPIFeedCell = (props) => {
-    console.log(props);
+const HPIFeedCell = () => {
 
-    const patientArray = [{
-        name: "Andrew",
-        dob: "02/27/1989",
-        symptom: "Neck Pain",
-        apptDate: "11/20/2020",
-        HPIcontent: "Patient is a 31 year old male who reports neck pain for the past 4 days."
-    },
-    {
-        name: "Prabin",
-        dob: "02/27/1989",
-        symptom: "Neck Pain",
-        apptDate: "11/20/2020",
-        HPIcontent: "Patient is a 32 year old male who reports neck pain for the past 4 days."
-    },
-    {
-        name: "Marlon",
-        dob: "02/27/1989",
-        symptom: "Neck Pain",
-        apptDate: "11/20/2020",
-        HPIcontent: "Patient is a 33 year old male who reports neck pain for the past 4 days."
-    }
+    const [patientRecords, setPatientRecords] = useState([]);
 
-    ]
+    
+    useEffect(()=> {
+        API.getPatientRecords()
+        .then(res => {
+            console.log("Patient Records: ", res);
+            setPatientRecords(res);
+        })
+        .catch(err => console.log(err));
+
+    }, []);
+
     //usestate to copy 
+
     const [copySuccess, setCopySuccess] = useState('');
     const textAreaRef = useRef(null);
 
@@ -39,44 +31,44 @@ const HPIFeedCell = (props) => {
         e.target.focus();
         setCopySuccess(<UncontrolledAlert color="success" fade={true}>Copied!</UncontrolledAlert>);
     };
-    
+
     return (
         <div className="container">
 
-            {patientArray.map((patient) => {
+            {patientRecords.data ? patientRecords.data.map((patientRecord) => {
 
-                return(
+                return (
                     <div className="card card-rounded m-4">
-                    <div className="card-header">
-                        <h3><i class="fa fa-user" aria-hidden="true"></i>{patient.name}</h3>
-                        <h5><i class="fa fa-birthday-cake" aria-hidden="true"></i>{patient.dob}</h5>
-                        <h5><i class="fa fa-stethoscope" aria-hidden="true"></i>{patient.symptom}</h5>
-                        <h5><i class="fa fa-calendar" aria-hidden="true"></i>{patient.apptDate}</h5>
-                    </div>
-                    <div className="card-body">
-                        <div className="form-group">
-                            <label for="HPItextarea">HPI</label>
-                            <textarea className="form-control" rows="4" ref={textAreaRef}>{patient.HPIcontent}
-                            </textarea>
+                        <div className="card-header">
+                <h3><i class="fa fa-user" aria-hidden="true"></i>{patientRecord.patientName}</h3>
+                            <h5><FontAwesomeIcon icon="birthday-cake" className="funIcons"/>DOB: {patientRecord.dob}</h5>
+                            <h5><FontAwesomeIcon icon="stethoscope" className="funIcons" />Reason for Visit: {patientRecord.symptom}</h5>
+                            <h5><FontAwesomeIcon icon="calendar"className="funIcons" />Date of Visit: {patientRecord.apptDate} </h5>
                         </div>
+                        <div className="card-body">
+                            <div className="form-group">
+                                <label for="HPItextarea">HPI</label>
+                                <textarea className="form-control" rows="4" ref={textAreaRef}>{patientRecord.hpi}
+                                </textarea>
+                            </div>
 
-                        <div className="d-flex bd-highlight mb-3">
-                            <div className="p-2">
-                                <button type="button" className=" btn btn-lg btn-outline-secondary mr-2" onClick={copyToClipboard}>
-                                    <i className="far fa-copy "></i> Copy
+                            <div className="d-flex bd-highlight mb-3">
+                                <div className="p-2">
+                                    <button type="button" patientId={patientRecord.id} className=" btn btn-lg btn-outline-secondary mr-2" onClick={copyToClipboard}>
+                                        <i className="far fa-copy "></i> Copy
                             </button>{copySuccess}
-                            </div>
-                            <div className="p-2">
-                                <button type="button" className="btn btn-lg btn-outline-primary">
-                                    <i className="fas fa-file-download"></i> Download PDF
+                                </div>
+                                <div className="p-2">
+                                    <button type="button" className="btn btn-lg btn-outline-primary">
+                                        <i className="fas fa-file-download"></i> Download PDF
                             </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 );
-                
-            })}
+
+            }) : "No Patients found!"}
         </div>
     );
 }
