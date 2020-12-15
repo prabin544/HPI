@@ -21,10 +21,7 @@ MIT License
 ## Contributing
 We appreciate your ongoing support.
 ## Authors and Acknowledgement
-Amy
-Andrew
-Marlon
-Robin
+
 Prabin
 
 Copyright (c) [2020] [MillennialHealthCareInc.]
