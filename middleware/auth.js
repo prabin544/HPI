@@ -15,7 +15,7 @@ const auth = (req, res, next) => {
 
 
         // If a token is found, decode it using the JWT_SECRET 
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        const verified = jwt.verify(token, "ItsASecret");
         if (!verified) {
             return res.status(401).json({
                 msg: 'Token verification failed, authorization denied'

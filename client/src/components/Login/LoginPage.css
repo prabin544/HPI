@@ -6,24 +6,4 @@ body{
     background-repeat: no-repeat;
    
 }
-.parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .child {
-    display: inline-block;
-  }
 
-
-
-  .btn-blue{
-    background-color: #5F95D0!important;
-    color:white!important;
-    border: none !important;
-    border-radius: 0!important;
-    padding: 5px
-
-    
-}

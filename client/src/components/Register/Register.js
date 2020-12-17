@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import UserContext from '../../Context/UserContext';
 import Axios from 'axios';
 import ErrorNotice from "../Error/ErrorNotice"
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Row } from "react-bootstrap";
 import './Register.css'
 
 
@@ -43,67 +43,129 @@ const RegisterPage = () => {
   };
 
   return (
+    <Row className="d-flex justify-content-center px-5">
+    <Card className="col-md-4 bg-white">
+      <Card.Header className="bg-pink">
+        <Card.Title><h4>Register</h4></Card.Title>
 
-    <div className="page">
-      <h2>Register</h2>
+        {error && (
+  <ErrorNotice message={error} clearError={() => setError(undefined)} />
+)}
+      
+      </Card.Header>
+      <Card.Body>
+        <Card.Text><Form className="form" onSubmit={submit}>
+      <Form.Group controlId="formBasicEmail">
       {error && (
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
       )}
-      <form className="form" onSubmit={submit}>
-        <label htmlFor="register-email">Email</label>
-        <input
-          id="register-email"
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <Form.Label htmlFor="register-email">Email address</Form.Label>
+        <Form.Control type="email" id="register-email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)}/>
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
+      </Form.Group>
+    
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label htmlFor="register-password">Password</Form.Label>
+        <Form.Control type="password" id="register-password" placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)}/>
+      </Form.Group>
 
-        <label htmlFor="register-password">Password</label>
-        <input
-          id="register-password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <Form.Group controlId="formBasicConfirmPassword">
+        <Form.Label htmlFor="confirm password"> Re-Enter Password</Form.Label>
+        <Form.Control type="password" id="passwordCheck" placeholder="Verify Password" onChange={(e) => setPasswordCheck(e.target.value)}/>
+      </Form.Group>
 
-        <label htmlFor="confirm password">Re-enter Password</label>
-        <input
-          id="passwordCheck"
-          type="password"
-          placeholder="Verify password"
-          onChange={(e) => setPasswordCheck(e.target.value)}
-        />
+      <Form.Group controlId="formBasicFirst">
+        <Form.Label htmlFor="register-display-firstName">First Name</Form.Label>
+        <Form.Control type="text" id="register-display-firstName" placeholder="Enter First Name" onChange={(e) => setFirstName(e.target.value)}/>
+      </Form.Group>
 
-        <label htmlFor="register-display-firstName">First Name</label>
-        <input
-          id="register-display-firstName"
-          type="text"
-          onChange={(e) => setFirstName(e.target.value)}
-        />
+      <Form.Group controlId="formBasicLast">
+        <Form.Label htmlFor="register-display-lastName">Last Name</Form.Label>
+        <Form.Control type="text" id="register-display-lastName" placeholder="Enter Last Name" onChange={(e) => setLastName(e.target.value)}/>
+      </Form.Group>
+
+      <Form.Group controlId="formBasicDob">
+        <Form.Label htmlFor="register-display-birthdate">Date of Birth</Form.Label>
+        <Form.Control type="date" id="register-display-birthdate" placeholder="Enter Date of Birth" onChange={(e) => setDob(e.target.value)}/>
+      </Form.Group>
+
+      <Form.Group controlId="formBasicGender">
+        <Form.Label htmlFor="register-display-gender">Gender</Form.Label>
+        <Form.Control type="text" id="register-display-gender" placeholder="Enter Your Gender at Birth" onChange={(e) => setGender(e.target.value)}/>
+      </Form.Group>
+      
+      <Button variant="primary" type="submit" value="Register">
+        Submit
+      </Button>
+    </Form>
+        </Card.Text>
+        
+      </Card.Body>
+    </Card>
+    </Row>
+
+    // <div className="page">
+    //   <h2>Register</h2>
+    //   {error && (
+    //     <ErrorNotice message={error} clearError={() => setError(undefined)} />
+    //   )}
+    //   <form className="form" onSubmit={submit}>
+    //     <label htmlFor="register-email">Email</label>
+    //     <input
+    //       id="register-email"
+    //       type="email"
+    //       onChange={(e) => setEmail(e.target.value)}
+    //     />
+
+    //     <label htmlFor="register-password">Password</label>
+    //     <input
+    //       id="register-password"
+    //       type="password"
+    //       onChange={(e) => setPassword(e.target.value)}
+    //     />
+
+    //     <label htmlFor="confirm password">Re-enter Password</label>
+    //     <input
+    //       id="passwordCheck"
+    //       type="password"
+    //       placeholder="Verify password"
+    //       onChange={(e) => setPasswordCheck(e.target.value)}
+    //     />
+
+    //     <label htmlFor="register-display-firstName">First Name</label>
+    //     <input
+    //       id="register-display-firstName"
+    //       type="text"
+    //       onChange={(e) => setFirstName(e.target.value)}
+    //     />
 
 
-        <label htmlFor="register-display-lastName">Last Name</label>
-        <input
-          id="register-display-lastName"
-          type="text"
-          onChange={(e) => setLastName(e.target.value)}
-        />
+    //     <label htmlFor="register-display-lastName">Last Name</label>
+    //     <input
+    //       id="register-display-lastName"
+    //       type="text"
+    //       onChange={(e) => setLastName(e.target.value)}
+    //     />
 
-        <label htmlFor="register-display-birthdate">Date of Birth</label>
-        <input
-          id="register-display-birthdate"
-          type="date"
-          onChange={(e) => setDob(e.target.value)}
-        />
+    //     <label htmlFor="register-display-birthdate">Date of Birth</label>
+    //     <input
+    //       id="register-display-birthdate"
+    //       type="date"
+    //       onChange={(e) => setDob(e.target.value)}
+    //     />
 
-        <label htmlFor="register-display-gender">Gender</label>
-        <input
-          id="register-display-gender"
-          type="text"
-          onChange={(e) => setGender(e.target.value)}
-        />
+    //     <label htmlFor="register-display-gender">Gender</label>
+    //     <input
+    //       id="register-display-gender"
+    //       type="text"
+    //       onChange={(e) => setGender(e.target.value)}
+    //     />
 
-        <input type="submit" value="Register" />
-      </form>
-    </div>
+    //     <input type="submit" value="Register" />
+    //   </form>
+    // </div>
 
     // <Card>
     //   <Card.Body>

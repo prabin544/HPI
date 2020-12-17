@@ -3,7 +3,7 @@ const router = require("express").Router(),
   auth = require("../../middleware/auth"),
   { User } = require("../../models"),
   db = require('../../models')
-  bcrypt = require("bcrypt"),
+bcrypt = require("bcrypt"),
   jwt = require("jsonwebtoken");
 
 // Matches with "/api/users"
@@ -37,6 +37,13 @@ router.get('/', auth, async (req, res) => {
   // console.log('logged user:', user)
   res.json({
     id: user._id,
+    email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    gender: user.gender,
+    dob: user.dob,
+    userType: user.userType,
+    illnessRecords: user.illnessRecords
   })
 })
 

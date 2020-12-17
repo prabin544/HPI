@@ -11,7 +11,7 @@ router.post("/", auth, async (req, res) => {
     try {
       const { symptom, symptomStart  } = req.body;
 
-      if (!symptom || !symptomStart)
+      if (!symptom )
       return res
         .status(400)
         .json({ msg: "Missing required fields" });

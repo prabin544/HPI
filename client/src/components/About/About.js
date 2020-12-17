@@ -83,7 +83,7 @@ return(
               </Card.Body>
 
               <Card.Footer>
-                  <Card.Link href="#">Github Profile</Card.Link>
+                  <Card.Link href="https://github.com/akeneson">Github Profile</Card.Link>
               </Card.Footer>
           </Card>
   
@@ -96,7 +96,7 @@ return(
               </Card.Body>
 
               <Card.Footer>
-                  <Card.Link href="#">Github Profile</Card.Link>
+                  <Card.Link href="https://github.com/AndyFreire">Github Profile</Card.Link>
               </Card.Footer>
           </Card>
 
@@ -109,7 +109,7 @@ return(
               </Card.Body>
 
               <Card.Footer>
-                  <Card.Link href="#">Github Profile</Card.Link>
+                  <Card.Link href="https://github.com/marlonpacheco">Github Profile</Card.Link>
               </Card.Footer>
           </Card>
 
@@ -129,7 +129,7 @@ return(
               </Card.Body>
 
               <Card.Footer>
-                  <Card.Link href="#">Github Profile</Card.Link>
+                  <Card.Link href="https://github.com/prabin544">Github Profile</Card.Link>
               </Card.Footer>
           </Card>
   
@@ -142,7 +142,7 @@ return(
               </Card.Body>
 
               <Card.Footer>
-                  <Card.Link href="#">Github Profile</Card.Link>
+                  <Card.Link href="https://github.com/RRenneke">Github Profile</Card.Link>
               </Card.Footer>
           </Card>
 
@@ -155,7 +155,7 @@ return(
               </Card.Body>
 
               <Card.Footer>
-                  <Card.Link href="#">Website</Card.Link>
+                  <Card.Link href="https://techbootcamps.smu.edu/">Website</Card.Link>
               </Card.Footer>
           </Card>
           </CardDeck>

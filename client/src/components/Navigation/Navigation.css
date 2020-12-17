@@ -7,7 +7,31 @@ body
     margin-top: none;
     background-color: white;
     color: #6B7378;
+    align-content: center!important;
 }
+
+.backimage {
+    background-image: url('./BlueBg.png');
+    padding:40px;
+    align-self: center!important;
+}
+
+/* .companyImage {
+    background-image: url('./search-bg.png');
+    height:160px;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit:cover;
+    margin-bottom: 45px;
+} */
+
+.companyName {
+    text-align: center;
+    letter-spacing: 25px!important;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font: bold!important;
+}
+
 .gray{
     color: #6B7378!important;
     align-content:center!important;
@@ -17,6 +41,7 @@ body
     border-top: 1px solid #6B7378;
     border-bottom: 1px solid #6B7378;
     align-content: center!important;
+    position: 'absolute' bottom 0;
 }
 .navbar-collapse{
     flex-basis: none!important;
@@ -42,7 +67,6 @@ body
 footer{
     text-align: center;
 }
-
 .navbar-toggler-icon {
     display: inline-block;
     width: 1.5em;
@@ -53,12 +77,10 @@ footer{
     color:#6B7378!important;
     background-size: 100% 100%;
 }
-
 .btn-blue{
     background-color: #5F95D0!important;
     color:#6B7378!important;
     border: none !important;
     border-radius: 0!important;
-
     
 }

@@ -5,8 +5,14 @@
  }
 h3{
   margin: auto;
-  padding-top: 10px;
+  padding-top: 50px;
   font-family: sans-serif;
+}
+.tabs{
+  padding-top: 50px;
+}
+.painBtn{
+  justify-content: center;
 }
 .hidden{
   display: none;

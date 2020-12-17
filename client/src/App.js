@@ -11,7 +11,7 @@ import UserContext from './Context/UserContext'
 import Register from './components/Register/Register';
 import Login from "./components/Login/LoginPage";
 import AboutPage from "./components/About/About"
-import LogOptions from "./components/LogOptions/LogOptions";
+// import LogOptions from "./components/LogOptions/LogOptions";
 import Time from "./components/CurrTime/CurrTimePage";
 
 // Import Fontawesome Library Component
@@ -24,30 +24,30 @@ function App() {
     user: undefined,
   })
 
-  useEffect(() => {
-    const loginCheck = async () => {
-      let token = localStorage.getItem('auth-token');
-      if (token === null) {
-        localStorage.setItem('auth-token', "");
-        token = ""
-      }
+  // useEffect(() => {
+  //   const loginCheck = async () => {
+  //     let token = localStorage.getItem('auth-token');
+  //     if (token === null) {
+  //       localStorage.setItem('auth-token', "");
+  //       token = ""
+  //     }
       
-      const tokenRes = await Axios.post('/api/users/validToken', null,
-        { headers: { 'x-auth-token': token } }
-      );
-      console.log('token response', tokenRes)
-      if (tokenRes.data) {
-        const userRes = await Axios.get('/api/users/', {
-          headers: { 'x-auth-token': token },
-        });
-        setUserData({
-          token,
-          user: userRes.data,
-        })
-      }
-    }
-    loginCheck();
-  }, []);
+  //     const tokenRes = await Axios.post('/api/users/validToken', null,
+  //       { headers: { 'x-auth-token': token } }
+  //     );
+  //     console.log('token response', tokenRes)
+  //     if (tokenRes.data) {
+  //       const userRes = await Axios.get('/api/users/', {
+  //         headers: { 'x-auth-token': token },
+  //       });
+  //       setUserData({
+  //         token,
+  //         user: userRes.data,
+  //       })
+  //     }
+  //   }
+  //   loginCheck();
+  // }, []);
 
   return (
     <Router>
@@ -55,7 +55,7 @@ function App() {
       <UserContext.Provider value={{userData, setUserData}} >
         <Navigation />
         <Switch>
-          <Route exact path="/" component={Login} />
+          <Route exact path="/" component={AboutPage} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/home" component={Home} />

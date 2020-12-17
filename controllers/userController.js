@@ -66,7 +66,7 @@ module.exports = {
 
       if (!token) return res.json(false);
 
-      const verified = jwt.verify(token, process.env.JWT_SECRET);
+      const verified = jwt.verify(token, "ItsASecret");
       if (!verified) return res.json(false);
 
       const user = await db.User.findById(verified.user)
@@ -100,7 +100,7 @@ module.exports = {
         .json({ msg: "Incorrect password" });
     }
 
-    const token = jwt.sign({ user: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ user: user._id }, "ItsASecret");
     //  console.log(token);
     res.json({
       token,
