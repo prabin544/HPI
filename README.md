@@ -22,7 +22,7 @@ MIT License
 We appreciate your ongoing support.
 ## Authors and Acknowledgement
 
-Prabin
+Amy, Andrew, Marlon, Robin and Prabin
 
 Copyright (c) [2020] [MillennialHealthCareInc.]
 
